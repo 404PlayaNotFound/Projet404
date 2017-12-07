@@ -1,4 +1,5 @@
 var started = false;
+var victory = false;
 var sizex = 800;
 var sizey = 600;
 var bg_color = 255;
@@ -61,9 +62,35 @@ function draw() {
 			for (var k = 0; k < missiles.length; k++) {
 				if(ennemies[i].colideWith(missiles[k])){
 					ennemies[i].die();
+					missiles.splice(k, 1);
 				}
 			}
-
 		}
+
+		for (var k = 0; k < missiles.length; k++) {
+			if(missiles[k].y<0) {
+				missiles.splice(k, 1);
+			}	
+		}
+		
+
+		var allDead = true;
+
+		for (var i = 0; i < ennemies.length; i++) {
+			if(!ennemies[i].isDead()) {
+				allDead = false;
+				break;
+			}
+		}
+
+		if(allDead) {
+			started = false;
+			victory = true;
+		}
+	}
+
+
+	if(victory) {
+		background(122);
 	}
 }

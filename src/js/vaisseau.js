@@ -86,6 +86,10 @@ class Ennemie extends GameObject {
 		this.isDie = true;
 	}
 
+	isDead() {
+		return this.isDie;
+	}
+
 	static updateDirection() {
 		if(((Ennemie.LAST_ENNEMIE_RIGHT.x+Ennemie.LAST_ENNEMIE_RIGHT.w >= sizex)||(Ennemie.LAST_ENNEMIE_LEFT.x+Ennemie.LAST_ENNEMIE_LEFT.w <= 0))&&Ennemie.direction!=3){ //reach border
 			Ennemie.lastDirection = Ennemie.direction; //stockage ancienne direction
