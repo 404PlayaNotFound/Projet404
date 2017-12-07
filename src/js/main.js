@@ -57,5 +57,13 @@ function draw() {
 			missiles[i].draw();
 		}
 
+		for (var i = 0; i < ennemies.length; i++) {
+			for (var k = 0; k < missiles.length; k++) {
+				if(ennemies[i].colideWith(missiles[k])){
+					ennemies[i] = null;
+				}
+			}
+
+		}
 	}
 }
