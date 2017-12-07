@@ -50,6 +50,7 @@ class Ennemie extends GameObject {
 	constructor(x, y, h, w){
 		super(x, y, h, w);
 
+		this.isDie = false;
 
 		// update the last enemies on the right and on the left
 		if(Ennemie.LAST_ENNEMIE_RIGHT == undefined || this.x > Ennemie.LAST_ENNEMIE_RIGHT.x) {
@@ -58,6 +59,12 @@ class Ennemie extends GameObject {
 
 		if(Ennemie.LAST_ENNEMIE_LEFT == undefined || this.x < Ennemie.LAST_ENNEMIE_LEFT.x) {
 			Ennemie.LAST_ENNEMIE_LEFT = this;
+		}
+	}
+
+	draw() {
+		if(!this.isDie) {
+			super.draw();
 		}
 	}
 
@@ -73,6 +80,10 @@ class Ennemie extends GameObject {
 				this.y += 15*Ennemie.SPEED;
 				break;
 		}
+	}
+
+	die(){
+		this.isDie = true;
 	}
 
 	static updateDirection() {
