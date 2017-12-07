@@ -32,6 +32,17 @@ class Vaisseau extends GameObject {
 	constructor(x, y, h, w){
 		super(x, y, h, w);
 	}
+
+	left(){
+		this.x = this.x-3;
+	}
+	right(){
+		this.x = this.x+3;
+	}
+	shoot(){
+		return new Missile(this.x, this.y+2, 5, 5);
+	}
+
 } 
 
 class Ennemie extends GameObject {
@@ -93,6 +104,6 @@ class Missile extends GameObject {
 	}
 
 	updatePos(){
-		this.y = this.y+2;
+		this.y = this.y-5;
 	}
 }
