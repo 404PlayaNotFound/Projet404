@@ -63,6 +63,12 @@ class Ennemie extends GameObject {
 				break;
 		}
 	}
+
+	static updateDirection() {
+		if(Ennemie.LAST_ENNEMIE_RIGHT.x+ ){
+
+		}
+	}
 }
 
 Ennemie.direction = 1;

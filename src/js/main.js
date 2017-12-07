@@ -41,5 +41,7 @@ function draw() {
 			ennemies[i].updatePos();
 			ennemies[i].draw();
 		}
+
+		Ennemie.updateDirection();
 	}
 }
