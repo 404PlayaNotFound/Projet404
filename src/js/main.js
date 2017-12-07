@@ -38,19 +38,21 @@ function draw() {
 
 	if(started) {
 		background(25);
+		player.draw();
 		for (var i = 0; i < ennemies.length; i++) {
 			ennemies[i].updatePos();
 			ennemies[i].draw();
 		}
-		player.draw();
+//		Ennemie.updateDirection();
+
+		if(keyIsDown(LEFT_ARROW) && player.x > 0){
+			player.left();
+		}
+		if(keyIsDown(RIGHT_ARROW) && player.x < sizex){
+			player.right();
+		}
 	}
 
 	keyPressed();
-	if(keyIsDown(LEFT_ARROW) && player.x > 0){
-		player.left();
-	}
-	if(keyIsDown(RIGHT_ARROW) && player.x < 800){
-		player.right();
-	}
-	player.draw();
+
 }
