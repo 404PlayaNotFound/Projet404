@@ -34,10 +34,13 @@ class Vaisseau extends GameObject {
 	}
 
 	left(){
-		this.x = this.x-5;
+		this.x = this.x-3;
 	}
 	right(){
-		this.x = this.x+5;
+		this.x = this.x+3;
+	}
+	shoot(){
+		return new Missile(this.x, this.y+2, 5, 5);
 	}
 
 } 
@@ -90,6 +93,6 @@ class Missile extends GameObject {
 	}
 
 	updatePos(){
-		this.y = this.y+2;
+		this.y = this.y-5;
 	}
 }

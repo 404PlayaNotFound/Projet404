@@ -2,9 +2,10 @@ var started = false;
 var sizex = 800;
 var sizey = 600;
 var bg_color = 255;
-
+var missiles = [];
 var ennemies = [];
 var player = undefined;
+var timerMissiles = 0;
 
 function setup() {
 	createCanvas(sizex, sizey);
@@ -45,12 +46,26 @@ function draw() {
 		}
 //		Ennemie.updateDirection();
 
-		if(keyIsDown(LEFT_ARROW) && player.x > 0){
+		if(keyIsDown(LEFT_ARROW) && player.x > 3){
 			player.left();
 		}
-		if(keyIsDown(RIGHT_ARROW) && player.x < sizex){
+		if(keyIsDown(RIGHT_ARROW) && player.x < sizex-7){
 			player.right();
 		}
+		player.draw();
+		if(timerMissiles < 35) {
+			timerMissiles++;
+		}
+		else{
+			timerMissiles = 0;
+			missiles.push(player.shoot());
+		}
+
+		for (var i = 0; i < missiles.length; i++) {
+			missiles[i].updatePos();
+			missiles[i].draw();
+		}
+
 	}
 
 	keyPressed();
