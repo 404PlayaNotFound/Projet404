@@ -18,15 +18,6 @@ function setup() {
 	player = new Vaisseau(0.5*sizex, 0.95*sizey, 5, 5);
 }
 
-function keyPressed() {
-
-	if(keyCode == 32) {
-  		background(25);
-	}
-
-	return false;
-}
-
 function draw() {
   	// put drawing code here
 	if(keyCode==32&&!started) {
@@ -67,7 +58,4 @@ function draw() {
 		}
 
 	}
-
-	keyPressed();
-
 }
