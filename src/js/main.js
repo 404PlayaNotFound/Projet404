@@ -60,7 +60,7 @@ function draw() {
 
 		for (var i = 0; i < ennemies.length; i++) {
 			for (var k = 0; k < missiles.length; k++) {
-				if(ennemies[i].colideWith(missiles[k])){
+				if(!ennemies[i].isDead() && ennemies[i].colideWith(missiles[k])){
 					ennemies[i].die();
 					missiles.splice(k, 1);
 				}
@@ -91,6 +91,6 @@ function draw() {
 
 
 	if(victory) {
-		background(122);
+		background(0,0,255);
 	}
 }
