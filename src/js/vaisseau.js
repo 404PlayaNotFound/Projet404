@@ -1,4 +1,9 @@
 
+function valueInRange(value,min, max)
+{ 
+	return (value >= min) && (value <= max);
+}
+
 class GameObject {
 	constructor(x, y, h, w) {
 		this.x = x;
@@ -13,12 +18,13 @@ class GameObject {
 	}
 
 	colideWith(other) {
-		if(this.x >= other.x && this.x<=(other.x+other.w)
-			&& this.y >= other.y && this.y<=(other.y+other.h)) {
-			return true;
-		}
+		 var xOverlap = valueInRange(this.x, other.x, other.x + other.w) ||
+                    	valueInRange(other.x, this.x, this.x + this.w);
 
-		return false;
+    	var yOverlap = valueInRange(this.y, other.y, other.y + other.h) ||
+                    	valueInRange(other.y, this.y, this.y + this.h);
+
+    	return xOverlap && yOverlap;
 	}
 
 	updatePos() {
