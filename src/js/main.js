@@ -14,11 +14,12 @@ function setup() {
 	for (var i = 0; i < 20; i++) {
 		ennemies.push(new Ennemie(i*20+0,0,10,10));		
 	}
+	player = new Vaisseau(0.5*sizex, 0.95*sizey, 5, 5);
 }
 
 function keyPressed() {
 
-	if(keyCode==32) {
+	if(keyCode == 32) {
   		background(25);
 	}
 
@@ -41,5 +42,15 @@ function draw() {
 			ennemies[i].updatePos();
 			ennemies[i].draw();
 		}
+		player.draw();
 	}
+
+	keyPressed();
+	if(keyIsDown(LEFT_ARROW) && player.x > 0){
+		player.left();
+	}
+	if(keyIsDown(RIGHT_ARROW) && player.x < 800){
+		player.right();
+	}
+	player.draw();
 }

@@ -32,6 +32,14 @@ class Vaisseau extends GameObject {
 	constructor(x, y, h, w){
 		super(x, y, h, w);
 	}
+
+	left(){
+		this.x = this.x-5;
+	}
+	right(){
+		this.x = this.x+5;
+	}
+
 } 
 
 class Ennemie extends GameObject {
