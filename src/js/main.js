@@ -30,9 +30,9 @@ function draw() {
 	if(keyCode==32&&!started) {
 		bg_color = 255-frameCount%255;
 		background(bg_color);
-	}
-	if(bg_color<=25) {
-		started = true;
+		if(bg_color<=25) {
+			started = true;
+		}
 	}
 
 	if(started) {
