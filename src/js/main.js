@@ -1,18 +1,22 @@
+var started = false;
+var sizex = 800;
+var sizey = 600;
+var bg_color = 255;
+
 function setup() {
 	createCanvas(800, 600);
-	background(256);
-}
-
-function keyPressed() {
-
-	if(keyCode==32) {
-  		background(25);
-	}
-
-	return false;
+    smooth();
+	background(bg_color);
 }
 
 function draw() {
   	// put drawing code here
-	keyPressed();
+	if(keyCode==32&&!started) {
+		bg_color = 255-frameCount%255;
+		background(bg_color);
+	}
+	if(bg_color<=25) {
+		started = true;
+	}
+	return false;
 }
