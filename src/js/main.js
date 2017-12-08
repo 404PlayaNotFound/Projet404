@@ -17,10 +17,10 @@ function setup() {
 	background(bg_color);
 
 	for (var i = 0; i < 20; i++) {
-		ennemies.push(new Ennemie(i*20+0,-30,10,10));		
+		ennemies.push(new Ennemie(i*30,-40,20,20));		
 	}
 	for (var i = 0; i < 20; i++) {	
-		ennemies.push(new Ennemie(i*20+10,-10,10,10));
+		ennemies.push(new Ennemie(i*30+10,-10,20,20));
 	}
 
 	player = new Vaisseau(0.5*sizex, 0.95*sizey, 5, 5);
