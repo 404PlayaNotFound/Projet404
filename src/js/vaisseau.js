@@ -62,6 +62,7 @@ class Ennemie extends GameObject {
 
 		this.img = loadImage("src/img/Ennemy.png");
 		this.isDie = false;
+		this.deadSince = 0;
 
 		// update the last enemies on the right and on the left
 		if(Ennemie.LAST_ENNEMIE_RIGHT == undefined || this.x > Ennemie.LAST_ENNEMIE_RIGHT.x) {
@@ -83,16 +84,21 @@ class Ennemie extends GameObject {
 	draw() {
 		if(!this.isDie) {
 			image(this.img, this.x, this.y, this.w, this.h);
+		} else {
+			if(!(this.deadSince > 15)) {
+				image(this.img, this.x, this.y, this.w, this.h);
+				this.deadSince++;
+			}			
 		}
 	}
 
 	updatePos(){
 		switch(Ennemie.direction){
 			case 1: // droite
-				this.x += 4*Ennemie.SPEED;
+				this.x += 3*Ennemie.SPEED;
 				break;
 			case 2: // gauche
-				this.x -= 4*Ennemie.SPEED;
+				this.x -= 3*Ennemie.SPEED;
 				break;
 			case 3: // bas
 				this.y += 15*Ennemie.SPEED;
@@ -101,6 +107,7 @@ class Ennemie extends GameObject {
 	}
 
 	die(){
+		this.img = loadImage("src/img/Boom.png");
 		this.isDie = true;
 	}
 

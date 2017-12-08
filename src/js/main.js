@@ -28,12 +28,17 @@ function reset() {
 
 	Ennemie.LAST_ENNEMIE_RIGHT = undefined;
 	Ennemie.LAST_ENNEMIE_LEFT = undefined;
+	Ennemie.direction = 1;
+	Ennemie.lastDirection = 1;
 
-	for (var i = 0; i < 20; i++) {
-		ennemies.push(new Ennemie(i*30,-40,20,20));		
+	for (var i = 0; i < 22; i++) {
+		ennemies.push(new Ennemie(i*30,-70,20,20));		
 	}
-	for (var i = 0; i < 20; i++) {	
-		ennemies.push(new Ennemie(i*30+10,-10,20,20));
+	for (var i = 0; i < 22; i++) {	
+		ennemies.push(new Ennemie(i*30+10,-40,20,20));
+	}
+	for (var i = 0; i < 22; i++) {	
+		ennemies.push(new Ennemie(i*30,-10,20,20));
 	}
 
 	player = new Vaisseau(0.5*sizex, 0.95*sizey, 5, 5);
@@ -50,8 +55,6 @@ function setup() {
 function draw() {
   	// put drawing code here
 	if(keyCode==32&&!(started||victory||defeat)) {
-		bg_color = 255-5*((1000*frameCount)%255);
-		background(bg_color);
 		started = true;
 	}
 
@@ -61,7 +64,11 @@ function draw() {
 	}
 
 	if(started) {
+		if(bg_color!=25) {
+			bg_color-=25; 
+		}
 		background(bg_color);
+
 		player.draw();
 		for (var i = 0; i < ennemies.length; i++) {
 			ennemies[i].updatePos();
@@ -77,7 +84,7 @@ function draw() {
 		}
 		player.draw();
 		if(keyIsDown(32)) {
-			if(timerMissiles < 20) {
+			if(timerMissiles < 10) {
 				timerMissiles++;
 			}
 			else{
