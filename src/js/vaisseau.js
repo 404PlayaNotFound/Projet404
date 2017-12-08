@@ -68,6 +68,13 @@ class Ennemie extends GameObject {
 		}
 	}
 
+	getXpos() {
+		return this.x;
+	}
+	getYpos() {
+		return this.y;
+	}
+
 	draw() {
 		if(!this.isDie) {
 			super.draw();
@@ -77,10 +84,10 @@ class Ennemie extends GameObject {
 	updatePos(){
 		switch(Ennemie.direction){
 			case 1: // droite
-				this.x += 2*Ennemie.SPEED;
+				this.x += 12*Ennemie.SPEED;
 				break;
 			case 2: // gauche
-				this.x -= 2*Ennemie.SPEED;
+				this.x -= 12*Ennemie.SPEED;
 				break;
 			case 3: // bas
 				this.y += 15*Ennemie.SPEED;
