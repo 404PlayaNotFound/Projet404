@@ -14,7 +14,8 @@ function setup() {
 	background(bg_color);
 
 	for (var i = 0; i < 20; i++) {
-		ennemies.push(new Ennemie(i*20+0,0,10,10));		
+		ennemies.push(new Ennemie(i*20+0,0,10,10));
+		ennemies.push(new Ennemie(i*20+10,25,10,10));
 	}
 	player = new Vaisseau(0.5*sizex, 0.95*sizey, 5, 5);
 }
@@ -24,9 +25,7 @@ function draw() {
 	if(keyCode==32&&!started) {
 		bg_color = 255-frameCount%255;
 		background(bg_color);
-		if(bg_color<=25) {
-			started = true;
-		}
+		started = true;
 	}
 
 	if(started) {
@@ -91,6 +90,7 @@ function draw() {
 
 
 	if(victory) {
-		background(0,0,255);
+		background(0,0,0);
+
 	}
 }
