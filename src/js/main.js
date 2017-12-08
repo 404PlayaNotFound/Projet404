@@ -48,6 +48,7 @@ function setup() {
 	createCanvas(sizex, sizey);
     smooth();
 	background(bg_color);
+	text("Wanna play a game ? Press your spacebar ", sizex/3, sizey/2);
 
 	reset();
 }
