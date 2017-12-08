@@ -88,7 +88,7 @@ function draw() {
 			if(!ennemies[i].isDead()) {
 				allDead = false;
 			}
-			console.log(ennemies[i].getYpos());
+			
 			if(!ennemies[i].isDead() && ennemies[i].getYpos() > sizey) { //WIP la defaite marche pas encore
 				started = false;
 				defeat = true;
