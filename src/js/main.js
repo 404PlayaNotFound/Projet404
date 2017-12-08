@@ -1,6 +1,8 @@
 var started = false;
 var victory = false;
 var defeat = false;
+var allDead;
+
 var sizex = 800;
 var sizey = 600;
 var bg_color = 255;
@@ -80,15 +82,14 @@ function draw() {
 			}	
 		}
 		
-
-		var allDead = true;
+		allDead = true;
 
 		for (var i = 0; i < ennemies.length; i++) {
 			if(!ennemies[i].isDead()) {
 				allDead = false;
-				break;
 			}
-			if(ennemies[i].getYpos() > sizey) { //WIP la defaite marche pas encore
+			console.log(ennemies[i].getYpos());
+			if(!ennemies[i].isDead() && ennemies[i].getYpos() > sizey) { //WIP la defaite marche pas encore
 				started = false;
 				defeat = true;
 			}
@@ -103,6 +104,15 @@ function draw() {
 
 	if(victory) {
 		background(0,0,0);
+		textSize(32);
+		fill(0, 102, 153);
+		text("Victoire", 30, 30);
+	}
 
+	if(defeat) {
+		background(0,0,0);
+		textSize(32);
+		fill(0, 102, 153);
+		text("Defaite", 30, 30);
 	}
 }
