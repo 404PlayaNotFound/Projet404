@@ -37,16 +37,20 @@ class GameObject {
 class Vaisseau extends GameObject {
 	constructor(x, y, h, w){
 		super(x, y, h, w);
+		this.img = loadImage("src/img/Vaisseau.png");
+	}
+	draw() {
+		image(this.img, this.x, this.y, this.img.width, this.img.height);
 	}
 
 	left(){
-		this.x = this.x-3;
+		this.x = this.x-1.5;
 	}
 	right(){
-		this.x = this.x+3;
+		this.x = this.x+1.5;
 	}
 	shoot(){
-		return new Missile(this.x, this.y+2, 5, 5);
+		return new Missile(this.x + this.img.width/2 -2.5 , this.y + 2, 5, 5);
 	}
 
 } 
@@ -56,6 +60,7 @@ class Ennemie extends GameObject {
 	constructor(x, y, h, w){
 		super(x, y, h, w);
 
+		this.img = loadImage("src/img/Ennemy.png");
 		this.isDie = false;
 
 		// update the last enemies on the right and on the left
@@ -77,17 +82,17 @@ class Ennemie extends GameObject {
 
 	draw() {
 		if(!this.isDie) {
-			super.draw();
+			image(this.img, this.x, this.y, this.w, this.h);
 		}
 	}
 
 	updatePos(){
 		switch(Ennemie.direction){
 			case 1: // droite
-				this.x += 12*Ennemie.SPEED;
+				this.x += 2*Ennemie.SPEED;
 				break;
 			case 2: // gauche
-				this.x -= 12*Ennemie.SPEED;
+				this.x -= 2*Ennemie.SPEED;
 				break;
 			case 3: // bas
 				this.y += 15*Ennemie.SPEED;
@@ -97,6 +102,7 @@ class Ennemie extends GameObject {
 
 	die(){
 		this.isDie = true;
+		this.img
 	}
 
 	isDead() {
