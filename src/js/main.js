@@ -11,10 +11,23 @@ var ennemies = [];
 var player = undefined;
 var timerMissiles = 0;
 
-function setup() {
-	createCanvas(sizex, sizey);
-    smooth();
-	background(bg_color);
+function reset() {
+	started = false;
+	victory = false;
+	defeat = false;
+	allDead = false;
+
+	sizex = 800;
+	sizey = 600;
+	missiles = [];
+	ennemies = [];
+	player = undefined;
+	timerMissiles = 0;
+
+	fill(255, 255, 255);
+
+	Ennemie.LAST_ENNEMIE_RIGHT = undefined;
+	Ennemie.LAST_ENNEMIE_LEFT = undefined;
 
 	for (var i = 0; i < 20; i++) {
 		ennemies.push(new Ennemie(i*30,-40,20,20));		
@@ -26,16 +39,29 @@ function setup() {
 	player = new Vaisseau(0.5*sizex, 0.95*sizey, 5, 5);
 }
 
+function setup() {
+	createCanvas(sizex, sizey);
+    smooth();
+	background(bg_color);
+
+	reset();
+}
+
 function draw() {
   	// put drawing code here
-	if(keyCode==32&&!started) {
-		bg_color = 255-5*(frameCount%255);
+	if(keyCode==32&&!(started||victory||defeat)) {
+		bg_color = 255-5*((1000*frameCount)%255);
 		background(bg_color);
 		started = true;
 	}
 
+	if(keyIsDown(82)&&(victory||defeat)) {
+		reset();
+		started = true;
+	}
+
 	if(started) {
-		background(25);
+		background(bg_color);
 		player.draw();
 		for (var i = 0; i < ennemies.length; i++) {
 			ennemies[i].updatePos();
@@ -103,16 +129,16 @@ function draw() {
 
 
 	if(victory) {
-		background(0,0,0);
 		textSize(32);
-		fill(0, 102, 153);
-		text("Victoire", 30, 30);
+		fill(255, 255, 255);
+		text("Victoire", sizex/3, sizey/2);
+		text("Press [R] to retry", sizex/3, sizey/2+30);
 	}
 
 	if(defeat) {
-		background(0,0,0);
 		textSize(32);
-		fill(0, 102, 153);
-		text("Defaite", 30, 30);
+		fill(255, 255, 255);
+		text("Defaite", sizex/3, sizey/2);
+		text("Press [R] to retry", sizex/3, sizey/2+30);
 	}
 }
