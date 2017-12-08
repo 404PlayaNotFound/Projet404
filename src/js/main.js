@@ -1,5 +1,6 @@
 var started = false;
 var victory = false;
+var defeat = false;
 var sizex = 800;
 var sizey = 600;
 var bg_color = 255;
@@ -14,16 +15,19 @@ function setup() {
 	background(bg_color);
 
 	for (var i = 0; i < 20; i++) {
-		ennemies.push(new Ennemie(i*20+0,0,10,10));
-		ennemies.push(new Ennemie(i*20+10,25,10,10));
+		ennemies.push(new Ennemie(i*20+0,-30,10,10));		
 	}
+	for (var i = 0; i < 20; i++) {	
+		ennemies.push(new Ennemie(i*20+10,-10,10,10));
+	}
+
 	player = new Vaisseau(0.5*sizex, 0.95*sizey, 5, 5);
 }
 
 function draw() {
   	// put drawing code here
 	if(keyCode==32&&!started) {
-		bg_color = 255-frameCount%255;
+		bg_color = 255-5*(frameCount%255);
 		background(bg_color);
 		started = true;
 	}
@@ -44,12 +48,16 @@ function draw() {
 			player.right();
 		}
 		player.draw();
-		if(timerMissiles < 35) {
+		if(keyIsDown(32)) {
+			if(timerMissiles < 20) {
+				timerMissiles++;
+			}
+			else{
+				timerMissiles = 0
+				missiles.push(player.shoot());
+			}
+		} else {
 			timerMissiles++;
-		}
-		else{
-			timerMissiles = 0;
-			missiles.push(player.shoot());
 		}
 
 		for (var i = 0; i < missiles.length; i++) {
@@ -79,6 +87,10 @@ function draw() {
 			if(!ennemies[i].isDead()) {
 				allDead = false;
 				break;
+			}
+			if(ennemies[i].getYpos() > sizey) { //WIP la defaite marche pas encore
+				started = false;
+				defeat = true;
 			}
 		}
 
